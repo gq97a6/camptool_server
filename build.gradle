@@ -1,0 +1,53 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version "1.9.10"
+    id "org.jetbrains.kotlin.plugin.allopen" version "1.9.10"
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'io.quarkus:quarkus-websockets'
+    implementation 'io.quarkus:quarkus-container-image-docker'
+    implementation 'io.quarkus:quarkus-kotlin'
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation 'io.quarkus:quarkus-reactive-mysql-client'
+    implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-smallrye-jwt'
+    implementation 'io.quarkus:quarkus-hibernate-reactive-panache-kotlin'
+    implementation 'io.quarkus:quarkus-security-webauthn'
+}
+
+group 'com.campbuddy'
+version '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+
+allOpen {
+    annotation("jakarta.ws.rs.Path")
+    annotation("jakarta.enterprise.context.ApplicationScoped")
+    annotation("jakarta.persistence.Entity")
+    annotation("io.quarkus.test.junit.QuarkusTest")
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17
+    kotlinOptions.javaParameters = true
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17
+}
