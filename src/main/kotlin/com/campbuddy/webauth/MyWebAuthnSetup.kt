@@ -1,5 +1,6 @@
 package com.campbuddy.webauth
 
+import com.campbuddy.webauth.WebAuthnCredential.Companion.findByCredID
 import io.quarkus.hibernate.reactive.panache.common.WithTransaction
 import io.quarkus.hibernate.reactive.panache.kotlin.PanacheEntityBase
 import io.quarkus.security.webauthn.WebAuthnUserProvider
@@ -7,7 +8,6 @@ import io.smallrye.mutiny.Uni
 import io.vertx.ext.auth.webauthn.AttestationCertificates
 import io.vertx.ext.auth.webauthn.Authenticator
 import jakarta.enterprise.context.ApplicationScoped
-import com.campbuddy.webauth.WebAuthnCredential.Companion.findByCredID
 
 @ApplicationScoped
 class MyWebAuthnSetup : WebAuthnUserProvider {

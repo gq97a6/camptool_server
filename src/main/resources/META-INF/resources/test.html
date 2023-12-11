@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        .container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        }
+        button, input {
+        margin: 5px 0;
+        }
+        .item {
+        padding: 20px;
+        }
+        nav > ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        }
+
+        nav > ul > li {
+        float: left;
+        }
+
+        nav > ul > li > a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        }
+
+        nav > ul > li > a:hover {
+        background-color: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">
+            <p>
+                <input id="username" placeholder="User name"/><br/>
+                <button id="login">Login</button>
+                <button id="register">Register</button>
+            </p>
+        </div>
+    </div>
+    <script src="test.js" type="text/javascript" charset="UTF-8"></script>
+</body>
+</html>

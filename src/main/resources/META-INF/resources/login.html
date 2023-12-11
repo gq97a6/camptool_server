@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp Buddy - Logowanie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #161616;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 10%;
+        }
+
+        .container button img {
+            vertical-align: middle;
+            height: 20px; /* Adjust the size as needed */
+            margin-right: 8px; /* Space between the icon and text */
+        }
+
+        form {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="username"],
+        input[type="password"],
+        input[type="submit"],
+        .alt-login button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            color: #fff;
+            border-radius: 5px;
+            background-color: #313131;
+            border: 1px solid #313131;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .or-divider {
+            margin: 10px 0;
+        }
+
+        .alt-login {
+            width: 300px; /* Set width to match form width */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .alt-login button {
+            background-color: #161616;
+            color: #3498db;
+            border: 1px solid #3498db;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .alt-login button:hover {
+            background-color: #00000048;
+            border-color: #2980b9;
+        }
+
+        .alt-login button i {
+            margin-right: 8px;
+        }
+
+        .no-acc {
+            font-size: 10px;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ffffff83;
+        }
+
+        .separator:not(:empty)::before {
+            margin-right: 2em;
+        }
+
+        .separator:not(:empty)::after {
+            margin-left: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="#">
+            <h1>CampBuddy</h1>
+            <input type="username" placeholder="Nazwa użytkownika" required>
+            <input type="password" placeholder="Twoje hasło" required>
+            <input type="submit" value="Zaloguj">
+
+            <div class="separator">lub</div>
+        </form>
+
+        <div class="alt-login">
+            <button>
+                <img src = "passkeys-logo.svg"/>
+                Zaloguj się kluczem
+            </button>
+        </div>
+    </div>
+</body>
+</html>

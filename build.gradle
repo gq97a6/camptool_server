@@ -22,6 +22,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-smallrye-jwt'
     implementation 'io.quarkus:quarkus-hibernate-reactive-panache-kotlin'
     implementation 'io.quarkus:quarkus-security-webauthn'
+    implementation 'io.vertx:vertx-auth-webauthn:4.5.0'
+    implementation 'io.vertx:vertx-lang-kotlin-coroutines:4.5.0'
 }
 
 group 'com.campbuddy'
