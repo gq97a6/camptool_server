@@ -1,6 +1,5 @@
-package com.campbuddy.webauth.recource
+package com.campbuddy.webauth
 
-import com.campbuddy.webauth.webAuthn
 import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.awaitEvent
 import jakarta.ws.rs.Consumes
@@ -64,7 +63,7 @@ class LoginResource {
                 response.authenticatorData.isNullOrBlank() ||
                 response.clientDataJSON.isNullOrBlank() ||
                 response.signature.isNullOrBlank()
-            ) return Response.status(Response.Status.BAD_REQUEST).build()
+            ) return Response.status(Response.Status.BAD_REQUEST).entity("Missing data.").build()
         }
 
         val body = JsonObject()
@@ -84,13 +83,13 @@ class LoginResource {
                 .authenticate(
                     JsonObject()
                         .put("username", data.username)
-                        .put("origin", "http://localhost")
-                        .put("domain", "localhost")
+                        .put("origin", "https://alteratom.com")
+                        .put("domain", "alteratom.com")
                         .put("challenge", data.challenge)
                         .put("webauthn", body)
                 )
                 .onSuccess {
-                    h.handle(Response.status(Response.Status.OK).entity(it.toString()).build())
+                    h.handle(Response.status(Response.Status.OK).build())
                 }.onFailure {
                     h.handle(Response.status(Response.Status.BAD_REQUEST).entity(it.toString()).build())
                 }

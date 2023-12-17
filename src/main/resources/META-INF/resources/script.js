@@ -64,6 +64,8 @@ loginButton.onclick = () => {
     var username = document.getElementById('username').value;
     var challenge = "";
 
+    if(username == "") return
+
     fetch("/login/webauthn/begin", {
         method: "POST",
         headers: {
