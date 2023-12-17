@@ -1,7 +1,7 @@
 package com.campbuddy.`object`
 
-data class UserDB(
-    val id: Long,
+data class User(
+    val uuid: String,
     val username: String,
     val password: String
 )

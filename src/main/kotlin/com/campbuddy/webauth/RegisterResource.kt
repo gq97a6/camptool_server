@@ -1,16 +1,13 @@
-package com.campbuddy.webauth.recource
+package com.campbuddy.webauth
 
-import com.campbuddy.webauth.authDb
-import com.campbuddy.webauth.webAuthn
+import com.campbuddy.database.UserTable
 import io.vertx.core.json.JsonObject
-import io.vertx.ext.auth.authentication.Credentials
 import io.vertx.kotlin.coroutines.awaitEvent
 import jakarta.ws.rs.Consumes
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.Response
-import java.util.*
 
 
 @Path("/register/webauthn")
@@ -25,16 +22,17 @@ class RegisterResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     suspend fun begin(data: RegisterBeginData): Response {
-        if (data.username.isNullOrBlank() || data.displayName.isNullOrBlank())
-            return Response.status(Response.Status.BAD_REQUEST).build()
+        if (data.username.isNullOrBlank())
+            return Response.status(Response.Status.BAD_REQUEST).entity("Missing data.").build()
 
-        val userId = UUID.randomUUID().toString() //TODO: ENSURE UNIQUE
+        val userId = UserTable.getByUsername(data.username)?.uuid
+            ?: return Response.status(Response.Status.BAD_REQUEST).entity("Invalid username.").build()
 
         val user = JsonObject()
             .put("id", userId)
             .put("rawId", userId)
             .put("name", data.username)
-            .put("displayName", data.displayName)
+            .put("displayName", data.username)
 
         return awaitEvent { h ->
             webAuthn.createCredentialsOptions(user).onSuccess {
@@ -69,7 +67,7 @@ class RegisterResource {
                 response == null ||
                 response.attestationObject.isNullOrBlank() ||
                 response.clientDataJSON.isNullOrBlank()
-            ) return Response.status(Response.Status.BAD_REQUEST).build()
+            ) return Response.status(Response.Status.BAD_REQUEST).entity("Missing data.").build()
         }
 
         val request = JsonObject()
@@ -87,8 +85,8 @@ class RegisterResource {
                 .authenticate(
                     JsonObject()
                         .put("username", data.username)
-                        .put("origin", "http://localhost")
-                        .put("domain", "localhost")
+                        .put("origin", "https://alteratom.com")
+                        .put("domain", "alteratom.com")
                         .put("challenge", data.challenge)
                         .put("webauthn", request)
                 )
