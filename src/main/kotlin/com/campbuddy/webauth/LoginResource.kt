@@ -1,5 +1,7 @@
 package com.campbuddy.webauth
 
+import com.campbuddy.Globals.Companion.domain
+import com.campbuddy.Globals.Companion.origin
 import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.awaitEvent
 import jakarta.ws.rs.Consumes
@@ -8,7 +10,6 @@ import jakarta.ws.rs.Path
 import jakarta.ws.rs.Produces
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.Response
-
 
 @Path("/login/webauthn")
 class LoginResource {
@@ -83,8 +84,10 @@ class LoginResource {
                 .authenticate(
                     JsonObject()
                         .put("username", data.username)
-                        .put("origin", "https://alteratom.com")
-                        .put("domain", "alteratom.com")
+                        .put("origin", origin)
+                        .put("domain", domain)
+                        //.put("origin", "https://alteratom.com")
+                        //.put("domain", "alteratom.com")
                         .put("challenge", data.challenge)
                         .put("webauthn", body)
                 )
