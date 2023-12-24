@@ -1,5 +1,7 @@
 package com.campbuddy.webauth
 
+import com.campbuddy.Globals.Companion.domain
+import com.campbuddy.Globals.Companion.origin
 import com.campbuddy.database.UserTable
 import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.awaitEvent
@@ -9,29 +11,24 @@ import jakarta.ws.rs.Path
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.Response
 
-
 @Path("/register/webauthn")
 class RegisterResource {
 
     data class RegisterBeginData(
-        val username: String?,
-        val displayName: String?
+        val username: String?, val displayName: String?
     )
 
     @Path("/begin")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     suspend fun begin(data: RegisterBeginData): Response {
-        if (data.username.isNullOrBlank())
-            return Response.status(Response.Status.BAD_REQUEST).entity("Missing data.").build()
+        if (data.username.isNullOrBlank()) return Response.status(Response.Status.BAD_REQUEST).entity("Missing data.")
+            .build()
 
-        val userId = UserTable.getByUsername(data.username)?.uuid
-            ?: return Response.status(Response.Status.BAD_REQUEST).entity("Invalid username.").build()
+        val userId = UserTable.getByUsername(data.username)?.uuid ?: return Response.status(Response.Status.BAD_REQUEST)
+            .entity("Invalid username.").build()
 
-        val user = JsonObject()
-            .put("id", userId)
-            .put("rawId", userId)
-            .put("name", data.username)
+        val user = JsonObject().put("id", userId).put("rawId", userId).put("name", data.username)
             .put("displayName", data.username)
 
         return awaitEvent { h ->
@@ -59,42 +56,30 @@ class RegisterResource {
     @Consumes(MediaType.APPLICATION_JSON)
     suspend fun finish(data: RegisterFinishData): Response {
         data.apply {
-            if (username.isNullOrBlank() ||
-                challenge.isNullOrBlank() ||
-                id.isNullOrBlank() ||
-                rawId.isNullOrBlank() ||
-                type.isNullOrBlank() ||
-                response == null ||
-                response.attestationObject.isNullOrBlank() ||
-                response.clientDataJSON.isNullOrBlank()
-            ) return Response.status(Response.Status.BAD_REQUEST).entity("Missing data.").build()
+            if (username.isNullOrBlank() || challenge.isNullOrBlank() || id.isNullOrBlank() || rawId.isNullOrBlank() || type.isNullOrBlank() || response == null || response.attestationObject.isNullOrBlank() || response.clientDataJSON.isNullOrBlank()) return Response.status(
+                Response.Status.BAD_REQUEST
+            ).entity("Missing data.").build()
         }
 
-        val request = JsonObject()
-            .put("id", data.id)
-            .put("rawId", data.rawId)
-            .put("type", data.type)
-            .put(
-                "response", JsonObject()
-                    .put("attestationObject", data.response?.attestationObject)
-                    .put("clientDataJSON", data.response?.clientDataJSON)
-            )
+        val request = JsonObject().put("id", data.id).put("rawId", data.rawId).put("type", data.type).put(
+            "response",
+            JsonObject().put("attestationObject", data.response?.attestationObject)
+                .put("clientDataJSON", data.response?.clientDataJSON)
+        )
 
         return awaitEvent { h ->
-            webAuthn
-                .authenticate(
-                    JsonObject()
-                        .put("username", data.username)
-                        .put("origin", "https://alteratom.com")
-                        .put("domain", "alteratom.com")
-                        .put("challenge", data.challenge)
-                        .put("webauthn", request)
-                )
-                .onSuccess {
-                    h.handle(Response.status(Response.Status.OK).entity(it.toString()).build())
-                }.onFailure {
-                    h.handle(Response.status(Response.Status.BAD_REQUEST).entity(it.toString()).build())
-                }
+            webAuthn.authenticate(
+                JsonObject().put("username", data.username)
+                    .put("origin", origin)
+                    .put("domain", domain)
+                    //.put("origin", "https://camp.hostunit.net")
+                    //.put("domain", "camp.hostunit.net")
+                    .put("challenge", data.challenge).put("webauthn", request)
+            ).onSuccess {
+                h.handle(Response.status(Response.Status.OK).entity(it.toString()).build())
+            }.onFailure {
+                h.handle(Response.status(Response.Status.BAD_REQUEST).entity(it.toString()).build())
+            }
         }
     }
 }
