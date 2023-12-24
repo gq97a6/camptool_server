@@ -33,10 +33,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-test {
-    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
-}
-
 allOpen {
     annotation("jakarta.ws.rs.Path")
     annotation("jakarta.enterprise.context.ApplicationScoped")
@@ -51,4 +47,23 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_17
+}
+
+tasks.register('deployVps') {
+    // Ensure this task runs after the Quarkus image build task
+    dependsOn 'imageBuild'
+
+    doLast {
+        // Step 1: Quarkus image build is already handled by the quarkusBuild task
+
+        // Step 2: Push the Docker image to the registry
+        exec {
+            commandLine 'cmd', '/c', 'docker', 'push', 'gq97a6/images:camp-1.0.0'
+        }
+
+        // Step 3: SSH into the VPS and run the Docker Compose command
+        exec {
+            commandLine 'cmd', '/c', 'ssh', 'vps', '"docker compose -f /own/docker/pjatk.yml up -d --force-recreate camp --pull gq97a6/images:camp-1.0.0"'
+        }
+    }
 }
