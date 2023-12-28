@@ -23,6 +23,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-hibernate-reactive-panache-kotlin'
     implementation 'io.vertx:vertx-auth-webauthn:4.5.0'
     implementation 'io.vertx:vertx-lang-kotlin-coroutines:4.5.0'
+    implementation 'org.mindrot:jbcrypt:0.4'
 }
 
 group 'com.campbuddy'

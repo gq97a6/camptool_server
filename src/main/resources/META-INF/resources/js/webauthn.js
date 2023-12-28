@@ -59,12 +59,11 @@ const base64ToBuffer = function (base64string) {
     }
 }
 
-const loginButton = document.getElementById('login');
-loginButton.onclick = () => {
+function loginWebauthn() {
     var username = document.getElementById('username').value;
     var challenge = "";
 
-    if(username == "") return
+    if (username == "") return
 
     fetch("/login/webauthn/begin", {
         method: "POST",
@@ -118,16 +117,12 @@ loginButton.onclick = () => {
         })
     })
     .then(res => {
-        if (res.status == 200) alert("login successful");
-        else alert("login fail");
-    });
+        if (res.status == 200) window.location.replace("/panel");
+    });  
+}
 
-    return false;
-};
-
-const registerButton = document.getElementById('register');
-registerButton.onclick = () => {
-    var username = document.getElementById('username').value;
+function registerWebauthn() {
+    var username = getCookie("username");
     var challenge = "";
 
     fetch("/register/webauthn/begin", {
@@ -185,6 +180,4 @@ registerButton.onclick = () => {
         if (res.status == 200) alert("register successful");
         else alert("register fail");
     });
-
-    return false;
-};
+}

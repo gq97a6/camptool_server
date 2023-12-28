@@ -9,6 +9,7 @@ import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
 import jakarta.ws.rs.Produces
 import jakarta.ws.rs.core.MediaType
+import jakarta.ws.rs.core.NewCookie
 import jakarta.ws.rs.core.Response
 
 @Path("/login/webauthn")
@@ -86,13 +87,20 @@ class LoginResource {
                         .put("username", data.username)
                         .put("origin", origin)
                         .put("domain", domain)
-                        //.put("origin", "https://alteratom.com")
-                        //.put("domain", "alteratom.com")
                         .put("challenge", data.challenge)
                         .put("webauthn", body)
                 )
                 .onSuccess {
-                    h.handle(Response.status(Response.Status.OK).build())
+                    val loginCookie = NewCookie.Builder("username")
+                        .value(data.username)
+                        .domain(".$domain")
+                        .path("/")
+                        .maxAge(3600)
+                        .secure(false)
+                        .httpOnly(false)
+                        .build()
+
+                    h.handle(Response.ok().cookie(loginCookie).build())
                 }.onFailure {
                     h.handle(Response.status(Response.Status.BAD_REQUEST).entity(it.toString()).build())
                 }
