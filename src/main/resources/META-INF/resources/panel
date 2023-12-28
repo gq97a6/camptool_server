@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Camp Buddy</title>
+    <title>Camp Buddy - Panel</title>
 
     <script src="js/common.js" type="text/javascript" charset="UTF-8"></script>
-    <script src="js/index.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="js/panel.js" type="text/javascript" charset="UTF-8"></script>
     <script src="js/webauthn.js" type="text/javascript" charset="UTF-8"></script>
-
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -126,23 +126,30 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <form action="javascript:login();">
-            <h1>CampBuddy</h1>
-            <input id="username" type="username" placeholder="Nazwa użytkownika">
-            <input id="password" type="password" placeholder="Twoje hasło">
-            <input type="submit" value="Zaloguj">
+    <script>
+        username = getCookie('username');
+        if (username == null) window.location.href = "/";
+    </script>
 
-            <div class="separator">lub</div>
-        </form>
+    <div class="container">
+        
+        <h1 id="name"></h1>
 
         <div class="alt-login">
-            <button onclick="loginWebauthn()">
-                <img src = "/res/passkeys-logo.svg"/> Zaloguj się kluczem
+            <button onclick="registerWebauthn()">
+                <img src = "/res/passkeys-logo.svg"/> Dodaj klucz
+            </button>
+        </div>
+
+        <div class="alt-login">
+            <button onclick="logout()">
+                Wyloguj
             </button>
         </div>
     </div>
 
-    
+    <script>
+        document.getElementById('name').innerHTML = "Witaj " + username;
+    </script>
 </body>
 </html>

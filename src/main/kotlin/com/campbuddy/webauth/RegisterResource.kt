@@ -72,8 +72,6 @@ class RegisterResource {
                 JsonObject().put("username", data.username)
                     .put("origin", origin)
                     .put("domain", domain)
-                    //.put("origin", "https://camp.hostunit.net")
-                    //.put("domain", "camp.hostunit.net")
                     .put("challenge", data.challenge).put("webauthn", request)
             ).onSuccess {
                 h.handle(Response.status(Response.Status.OK).entity(it.toString()).build())

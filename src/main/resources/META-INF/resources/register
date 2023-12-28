@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Camp Buddy</title>
+    <title>Camp Buddy - Rejestracja</title>
 
     <script src="js/common.js" type="text/javascript" charset="UTF-8"></script>
-    <script src="js/index.js" type="text/javascript" charset="UTF-8"></script>
-    <script src="js/webauthn.js" type="text/javascript" charset="UTF-8"></script>
-
+    <script src="js/register.js" type="text/javascript" charset="UTF-8"></script>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -127,22 +126,12 @@
 </head>
 <body>
     <div class="container">
-        <form action="javascript:login();">
+        <form  action="javascript:register();">
             <h1>CampBuddy</h1>
             <input id="username" type="username" placeholder="Nazwa użytkownika">
             <input id="password" type="password" placeholder="Twoje hasło">
-            <input type="submit" value="Zaloguj">
-
-            <div class="separator">lub</div>
+            <input type="submit" value="Zarejestruj">
         </form>
-
-        <div class="alt-login">
-            <button onclick="loginWebauthn()">
-                <img src = "/res/passkeys-logo.svg"/> Zaloguj się kluczem
-            </button>
-        </div>
     </div>
-
-    
 </body>
 </html>

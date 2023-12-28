@@ -1,5 +1,7 @@
 package com.campbuddy.resource
 
+/*
+
 import jakarta.annotation.security.PermitAll
 import jakarta.annotation.security.RolesAllowed
 import jakarta.enterprise.context.RequestScoped
@@ -12,7 +14,6 @@ import jakarta.ws.rs.core.Context
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.SecurityContext
 import org.eclipse.microprofile.jwt.JsonWebToken
-
 
 @Path("/secured2")
 @RequestScoped
@@ -52,3 +53,4 @@ class TokenSecuredResource {
         return jwt.claimNames != null
     }
 }
+ */

@@ -1,7 +1,7 @@
 package com.campbuddy.`object`
 
 data class User(
-    val uuid: String,
+    var uuid: String,
     val username: String,
-    val password: String
+    var password: String
 )
