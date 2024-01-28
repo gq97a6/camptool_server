@@ -1,7 +1,7 @@
 package com.campbuddy.resource
 
 import com.campbuddy.database.UserTable
-import com.campbuddy.`object`.User
+import com.campbuddy.classes.User
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
 import jakarta.ws.rs.core.Response

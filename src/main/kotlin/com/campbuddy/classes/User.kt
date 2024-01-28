@@ -1,4 +1,4 @@
-package com.campbuddy.`object`
+package com.campbuddy.classes
 
 data class User(
     var uuid: String,

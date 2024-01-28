@@ -1,5 +1,7 @@
 package com.campbuddy
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JSR310Module
 import io.quarkus.reactive.datasource.ReactiveDataSource
 import io.quarkus.runtime.StartupEvent
 import io.vertx.core.Vertx
@@ -8,8 +10,6 @@ import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.event.Observes
 import jakarta.inject.Inject
 import org.eclipse.microprofile.config.inject.ConfigProperty
-
-
 
 
 @ApplicationScoped
@@ -32,6 +32,7 @@ class Globals {
         Companion.vertx = vertx!!
         Companion.origin = origin ?: "http://localhost"
         Companion.domain = domain ?: "localhost"
+        mapper.findAndRegisterModules()
     }
 
     companion object {
@@ -39,5 +40,6 @@ class Globals {
         lateinit var vertx: Vertx
         lateinit var origin: String
         lateinit var domain: String
+        var mapper: ObjectMapper = ObjectMapper()
     }
 }
