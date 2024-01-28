@@ -1,7 +1,7 @@
 package com.campbuddy.database
 
 import com.campbuddy.Globals.Companion.mainClient
-import com.campbuddy.`object`.User
+import com.campbuddy.classes.User
 import io.vertx.mutiny.sqlclient.Tuple
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

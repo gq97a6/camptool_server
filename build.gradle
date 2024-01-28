@@ -24,6 +24,7 @@ dependencies {
     implementation 'io.vertx:vertx-auth-webauthn:4.5.0'
     implementation 'io.vertx:vertx-lang-kotlin-coroutines:4.5.0'
     implementation 'org.mindrot:jbcrypt:0.4'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
 }
 
 group 'com.campbuddy'
