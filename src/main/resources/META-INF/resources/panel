@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Camp Buddy - Panel</title>
+    <title>Camp Tool - Panel</title>
 
     <script src="js/common.js" type="text/javascript" charset="UTF-8"></script>
     <script src="js/panel.js" type="text/javascript" charset="UTF-8"></script>

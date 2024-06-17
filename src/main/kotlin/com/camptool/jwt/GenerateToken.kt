@@ -1,4 +1,4 @@
-package com.campbuddy.jwt
+package com.camptool.jwt
 
 import io.smallrye.jwt.build.Jwt
 import org.eclipse.microprofile.jwt.Claims

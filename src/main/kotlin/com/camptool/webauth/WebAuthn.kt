@@ -1,7 +1,7 @@
-package com.campbuddy.webauth
+package com.camptool.webauth
 
-import com.campbuddy.Globals.Companion.vertx
-import com.campbuddy.database.AuthenticatorTable
+import com.camptool.Globals.Companion.vertx
+import com.camptool.database.AuthenticatorTable
 import io.vertx.core.Future
 import io.vertx.ext.auth.webauthn.*
 import io.vertx.kotlin.coroutines.vertxFuture
@@ -9,7 +9,7 @@ import io.vertx.kotlin.coroutines.vertxFuture
 val webAuthn: WebAuthn = WebAuthn.create(
     vertx,
     WebAuthnOptions()
-        .setRelyingParty(RelyingParty().setName("CampBuddy"))
+        .setRelyingParty(RelyingParty().setName("CampTool"))
         .setUserVerification(UserVerification.PREFERRED)
 ).authenticatorFetcher { query: Authenticator ->
     vertxFuture(vertx) {

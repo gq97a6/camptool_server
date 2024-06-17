@@ -1,8 +1,8 @@
-package com.campbuddy.resource
+package com.camptool.resource
 
-import com.campbuddy.database.KidTable
-import com.campbuddy.classes.Kid
-import com.campbuddy.classes.kids
+import com.camptool.database.KidTable
+import com.camptool.classes.Kid
+import com.camptool.classes.kids
 import jakarta.ws.rs.*
 import jakarta.ws.rs.core.Response
 

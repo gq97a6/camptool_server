@@ -27,7 +27,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
 }
 
-group 'com.campbuddy'
+group 'com.camptool'
 version '1.0.0'
 
 java {

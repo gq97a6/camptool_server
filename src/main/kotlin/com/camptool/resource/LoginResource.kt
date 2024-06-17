@@ -1,7 +1,7 @@
-package com.campbuddy.resource
+package com.camptool.resource
 
-import com.campbuddy.Globals.Companion.domain
-import com.campbuddy.database.UserTable
+import com.camptool.Globals.Companion.domain
+import com.camptool.database.UserTable
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
 import jakarta.ws.rs.core.NewCookie

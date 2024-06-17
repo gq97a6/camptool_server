@@ -1,7 +1,7 @@
-package com.campbuddy.database
+package com.camptool.database
 
-import com.campbuddy.Globals.Companion.mainClient
-import com.campbuddy.Globals.Companion.vertx
+import com.camptool.Globals.Companion.mainClient
+import com.camptool.Globals.Companion.vertx
 import io.vertx.ext.auth.webauthn.Authenticator
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.dispatcher

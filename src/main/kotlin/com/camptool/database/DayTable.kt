@@ -1,8 +1,8 @@
-package com.campbuddy.database
+package com.camptool.database
 
-import com.campbuddy.Globals.Companion.mainClient
-import com.campbuddy.Globals.Companion.mapper
-import com.campbuddy.classes.Day
+import com.camptool.Globals.Companion.mainClient
+import com.camptool.Globals.Companion.mapper
+import com.camptool.classes.Day
 import io.vertx.mutiny.sqlclient.Tuple
 import jakarta.enterprise.context.ApplicationScoped
 import kotlinx.coroutines.Dispatchers
