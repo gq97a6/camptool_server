@@ -1,4 +1,4 @@
-package com.campbuddy
+package com.camptool
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module

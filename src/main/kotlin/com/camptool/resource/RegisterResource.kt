@@ -1,7 +1,7 @@
-package com.campbuddy.resource
+package com.camptool.resource
 
-import com.campbuddy.database.UserTable
-import com.campbuddy.classes.User
+import com.camptool.database.UserTable
+import com.camptool.classes.User
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
 import jakarta.ws.rs.core.Response

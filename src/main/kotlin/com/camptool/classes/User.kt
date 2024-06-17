@@ -1,4 +1,4 @@
-package com.campbuddy.classes
+package com.camptool.classes
 
 data class User(
     var uuid: String,

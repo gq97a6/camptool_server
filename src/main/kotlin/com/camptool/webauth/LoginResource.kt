@@ -1,7 +1,7 @@
-package com.campbuddy.webauth
+package com.camptool.webauth
 
-import com.campbuddy.Globals.Companion.domain
-import com.campbuddy.Globals.Companion.origin
+import com.camptool.Globals.Companion.domain
+import com.camptool.Globals.Companion.origin
 import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.awaitEvent
 import jakarta.ws.rs.Consumes

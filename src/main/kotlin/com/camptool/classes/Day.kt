@@ -1,4 +1,4 @@
-package com.campbuddy.classes
+package com.camptool.classes
 
 import java.time.LocalDate
 import java.time.LocalTime

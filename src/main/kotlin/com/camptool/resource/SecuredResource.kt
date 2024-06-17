@@ -1,4 +1,4 @@
-package com.campbuddy.resource
+package com.camptool.resource
 
 /*
 

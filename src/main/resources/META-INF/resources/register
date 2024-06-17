@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Camp Buddy - Rejestracja</title>
+    <title>Camp Tool - Rejestracja</title>
 
     <script src="js/common.js" type="text/javascript" charset="UTF-8"></script>
     <script src="js/register.js" type="text/javascript" charset="UTF-8"></script>
@@ -128,7 +128,7 @@
 <body>
     <div class="container">
         <form  action="javascript:register();">
-            <h1>CampBuddy</h1>
+            <h1>CampTool</h1>
             <input id="username" type="username" placeholder="Nazwa użytkownika">
             <input id="password" type="password" placeholder="Twoje hasło">
             <input type="submit" value="Zarejestruj">

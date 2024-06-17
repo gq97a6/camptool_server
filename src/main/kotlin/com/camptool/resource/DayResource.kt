@@ -1,8 +1,8 @@
-package com.campbuddy.resource
+package com.camptool.resource
 
-import com.campbuddy.classes.Day
-import com.campbuddy.classes.days
-import com.campbuddy.database.DayTable
+import com.camptool.classes.Day
+import com.camptool.classes.days
+import com.camptool.database.DayTable
 import jakarta.ws.rs.*
 import jakarta.ws.rs.core.Response
 
